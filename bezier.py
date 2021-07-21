@@ -7,9 +7,9 @@ from matplotlib import pyplot as plt
 def get_coord(t, t_start, t_stop, start_val, stop_val, ease_out, ease_in):
     # single parameter bezier
     # time on x axis
-    p1 = t_start
-    p4 = t_stop
-
+    p1 = (t_start, start_val)
+    p4 = (t_stop, stop_val)
+    p2 = p1[0] + (p4[0] - p1[0]) * 
 def get_coord2(t, p1, p2):
     x = ((1-t) * p1[0]) + (t * p2[0])
     y = ((1-t) * p1[1]) + (t * p2[1])
@@ -25,7 +25,6 @@ def get_coord4(t, p1, p2, p3, p4):
 def easeCustom(t, t_start, t_stop, p1, p4, ease_out, ease_in):
     # 1/duration * (distance from animation start)
     t_trans = 1 / (t_stop-t_start) * (t - t_start)
-    p2 = 
 
 if __name__ == '__main__':
     print('\noutput: \n')
@@ -37,6 +36,7 @@ if __name__ == '__main__':
     times = [2, 3, 4, 5, 6, 7]
     for t in times:
         x, y = easeCustom(t, 2, 7, (0,0), (10,10), .33, 1)
+
     # for i in range(positions+1):
     #     t = i / positions
     #     # x, y = get_coord4(t, (3,10), (10,0), (0,0), (7,10))
@@ -46,7 +46,9 @@ if __name__ == '__main__':
     #     y_positions.append(y)
 
     plt.plot(x_positions, y_positions)
-    plt.title('Bezier')
+    plt.title("Bezier Curve")
+    plt.xlabel = "Time"
+    plt.ylabel = "Parameter"
     plt.show()
 
     print('\ndone.')
